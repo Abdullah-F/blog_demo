@@ -1,0 +1,15 @@
+.Comment{
+    margin: 10px;
+    padding: 10px;
+    background-color: darkgray;
+    border: black solid;
+}
+
+.AuthoredBy{
+    color: chocolate;
+}
+
+.CommentBody{
+    margin-top: 5px;
+    margin-left: 5px;
+}

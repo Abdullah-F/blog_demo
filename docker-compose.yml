@@ -1,0 +1,57 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: ./posts_task_back_end/
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./posts_task_back_end/:/posts_task_back_end/
+    env_file: ./posts_task_back_end/.env
+    environment:
+      RAILS_ENV: development
+
+  db:
+    image: "mysql:5.7"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+  redis:
+   image: "redis:4.0-alpine"
+   command: redis-server
+   volumes:
+      - "redis:/data"
+  sidekiq:
+    build:
+      context: ./posts_task_back_end/
+      dockerfile: Dockerfile
+    depends_on:
+      - app
+      - db
+      - redis
+    volumes:
+      - ./posts_task_back_end/:/posts_task_back_end/
+    env_file: ./posts_task_back_end/.env
+    environment:
+      RAILS_ENV: development
+    entrypoint: ./entrypoints/sidekiq-entrypoint.sh
+  frontend:
+    build:
+      context: ./post_task_front_end/
+    depends_on:
+      - app
+    volumes:
+      - ./post_task_front_end/:/post_task_front_end/
+      - ./post_task_front_end/node_modules:/post_task_front_end/node_modules
+    command: npm start
+    ports:
+      - 3001:3001
+volumes:
+  db:
+  redis:

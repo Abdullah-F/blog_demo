@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  app: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:     
+      - db
+      - redis
+    ports: 
+      - "3000:3000"
+    volumes:
+      - .:/app
+    env_file: .env
+    environment:
+      RAILS_ENV: development
+
+  db:
+    image: "mysql:5.7"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+  redis:
+   image: "redis:4.0-alpine"
+   command: redis-server
+   volumes:
+      - "redis:/data"
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - app      
+      - db
+      - redis
+    volumes:
+      - .:/app
+    env_file: .env
+    environment:
+      RAILS_ENV: development
+    entrypoint: ./entrypoints/sidekiq-entrypoint.sh
+
+volumes:
+  db:
+  redis:

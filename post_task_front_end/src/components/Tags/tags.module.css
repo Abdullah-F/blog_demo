@@ -1,0 +1,6 @@
+.Tags{
+    margin: 20px 0px;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}

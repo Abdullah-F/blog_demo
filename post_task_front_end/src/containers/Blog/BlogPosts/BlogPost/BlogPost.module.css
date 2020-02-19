@@ -1,0 +1,18 @@
+.BlogPost{
+    background-color: rgb(194, 187, 187);
+    padding: 20px 0px;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.CURD_hidden{
+    display: none;
+}
+
+.CURD{
+    border-top-style: dotted;
+    border-right-style: solid;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+}
+
