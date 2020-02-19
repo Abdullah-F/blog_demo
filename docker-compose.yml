@@ -3,7 +3,7 @@ version: '3.7'
 services:
   app:
     build:
-      context: ./posts_task_back_end/
+      context: ./blog_back_end/
       dockerfile: Dockerfile
     depends_on:
       - db
@@ -11,8 +11,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./posts_task_back_end/:/posts_task_back_end/
-    env_file: ./posts_task_back_end/.env
+      - ./blog_back_end/:/blog_back_end/
+    env_file: ./blog_back_end/.env
     environment:
       RAILS_ENV: development
 
@@ -29,26 +29,26 @@ services:
       - "redis:/data"
   sidekiq:
     build:
-      context: ./posts_task_back_end/
+      context: ./blog_back_end/
       dockerfile: Dockerfile
     depends_on:
       - app
       - db
       - redis
     volumes:
-      - ./posts_task_back_end/:/posts_task_back_end/
-    env_file: ./posts_task_back_end/.env
+      - ./blog_back_end/:/blog_back_end/
+    env_file: ./blog_back_end/.env
     environment:
       RAILS_ENV: development
     entrypoint: ./entrypoints/sidekiq-entrypoint.sh
   frontend:
     build:
-      context: ./post_task_front_end/
+      context: ./blog_front_end/
     depends_on:
       - app
     volumes:
-      - ./post_task_front_end/:/post_task_front_end/
-      - ./post_task_front_end/node_modules:/post_task_front_end/node_modules
+      - ./blog_front_end/:/blog_front_end/
+      - ./blog_front_end/node_modules:/blog_front_end/node_modules
     command: npm start
     ports:
       - 3001:3001

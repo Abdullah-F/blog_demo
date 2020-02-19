@@ -8,14 +8,14 @@ apk add build-base libxslt-dev libxml2-dev ruby-rdoc mysql-dev sqlite-dev
 
 RUN gem install bundler
 
-WORKDIR /posts_task_back_end/
+WORKDIR /blog_back_end/
 
-COPY Gemfile Gemfile.lock /posts_task_back_end/
+COPY Gemfile Gemfile.lock /blog_back_end/
 
 RUN bundle config build.nokogiri --use-system-libraries
 
 RUN bundle install 
 
-COPY . /posts_task_back_end/
+COPY . /blog_back_end/
 
 ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
