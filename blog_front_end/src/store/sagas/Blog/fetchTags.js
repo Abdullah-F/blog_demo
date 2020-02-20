@@ -12,7 +12,6 @@ export function* fetchTagsSaga() {
         const response = yield Axios.get('/tags', {headers: headers})
         yield put(actionCreators.tagsFetchedSuccessfully(response.data));
     } catch (error) {
-        console.log(error);
         yield put(actionCreators.tagsCouldNotBeFetched(error.response.data.error));
     }
 }

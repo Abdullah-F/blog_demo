@@ -84,8 +84,6 @@ class SignUp extends Component {
                 avatar: this.state.signUpFrom.avatar.files[0],
             }
         }*/
-        console.log('[from sumit handler]',formData)
-
         this.props.onSignUp(formData)
     }
 

@@ -12,7 +12,6 @@ export function* fetchPostsSaga() {
         const response = yield Axios.get('/posts', {headers: headers})
         yield put(actionCreators.postsFetchedSuccessfully(response.data));
     } catch (error) {
-        console.log(error);
         yield put(actionCreators.postsCouldNotBeFetched(error.response.data.error));
     }
 }

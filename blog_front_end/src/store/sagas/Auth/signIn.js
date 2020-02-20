@@ -16,7 +16,6 @@ export function* SignInSaga(action) {
         yield put(actionCreators.signInSuccess(response.data));
         yield put(actionCreators.signOutAfterTimeExpires(response.data.expires_in))
     } catch (error) {
-        console.log(error);
         yield put(actionCreators.signInFail(error.response.data.error));
     }
 }

@@ -4,7 +4,7 @@ class PostDecorator < ApplicationDecorator
   def to_json
     {
       comments: object.comments.decorate.to_json,
-      author: object.author,
+      author: object.author.decorate.to_json,
       tags: object.tags,
     }.merge(object.as_json)
   end
