@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :post do
-    title { "MyString" }
-    author_id { 1 }
+    author
+    title { Faker::Lorem.sentence(word_count: 3) }
+    body { Faker::Lorem.paragraph }
   end
 end
