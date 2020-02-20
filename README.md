@@ -25,11 +25,13 @@ Things to do for this demo :
 <ul>
 <li>Add form validations to the front end</li>
 <li>dry up code in front end susch as drying up the immutabe updates in the reducers and the forms containers</li>
-<li>remove hard coded url in the front end to .env file</li>
+<li>remove hard coded url in the front end and the backend to .env files</li>
+<li>configure the test db and production db for the backend docker container in the database.yml and the .env</li>
 <li>remove some hard coded config from the backend</li>
 <li>optimize the docker , and docker compose files for the front end</li>
 <li>remove a warning that is comming from the Gemfile</li>
 <li>add more validations to the backend</li>
-<li>complete the test suite for the front end and backedn as well</li>
+<li>complete the test suite for the backend</li>
+<li>write full tests for the front-end using jest and enzygm</li>
 <li>make the front end fully responsive as well as enhance the general styling for the code and optmize it</li>
 </ul>

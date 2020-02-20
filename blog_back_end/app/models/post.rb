@@ -12,6 +12,6 @@ class Post < ApplicationRecord
   private
 
   def destroy_post_after_24_hours
-    DeletePostWorker.perform_in(24.minute, self.id)
+    DeletePostWorker.perform_in(24.hours, self.id)
   end
 end
