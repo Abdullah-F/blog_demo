@@ -1,11 +1,15 @@
 # base image
-FROM node:13.6.0-alpine3.11
+FROM node:13.6.0-alpine
+# Create a work directory and copy over our dependency manifest files.
+# set working directory
+WORKDIR /app/
 
-#also say 
-WORKDIR /blog_front_end/
-#copy the react app to the container
-COPY . /blog_front_end/
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-# #prepare the contiainer for building react 
+# install and cache app dependencies
+COPY package.json /app/package.json
 RUN npm install --silent
-RUN npm install react-scripts@3.0.1 -g --silent
+
+# start app
+CMD ["npm", "start"]

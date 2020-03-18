@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+
+  frontend:
+    build:
+      context: .
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '3001:3000'

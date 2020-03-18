@@ -15,7 +15,6 @@ services:
     env_file: ./blog_back_end/.env
     environment:
       RAILS_ENV: development
-
   db:
     image: "mysql:5.7"
     environment:
@@ -43,15 +42,14 @@ services:
     entrypoint: ./entrypoints/sidekiq-entrypoint.sh
   frontend:
     build:
-      context: ./blog_front_end/
+      context: ./blog_front_end
     depends_on:
       - app
     volumes:
-      - ./blog_front_end/:/blog_front_end/
-      - ./blog_front_end/node_modules:/blog_front_end/node_modules
-    command: npm start
+      - './blog_front_end:/app'
+      - '/app/node_modules'
     ports:
-      - 3001:3001
+      - '3001:3000'
 volumes:
   db:
   redis:
